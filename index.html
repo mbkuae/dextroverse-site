@@ -4,44 +4,357 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dextroverse — From idea to physical part</title>
-  <meta name="description" content="Dextroverse is building an AI-native platform that turns ideas into manufacturable parts: design, prototype, and production in one flow.">
+  <meta name="description" content="Describe the part you need. Dextroverse designs it, measures it against what you asked for, and makes it — with a record of every step.">
+  <link rel="canonical" href="https://dextroverse.io/">
   <link rel="icon" type="image/png" href="favicon.png">
-  <meta property="og:title" content="Dextroverse">
-  <meta property="og:description" content="From idea to physical part. AI-native design, prototyping and on-demand manufacturing.">
-  <meta property="og:image" content="logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dextroverse.io/">
+  <meta property="og:title" content="Dextroverse — From idea to physical part">
+  <meta property="og:description" content="Describe the part you need. Dextroverse designs it, measures it against what you asked for, and makes it — with a record of every step.">
+  <meta property="og:image" content="https://dextroverse.io/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #0b0f12; --text: #e8f1f0; --muted: #8fa3a1; --g1: #48E1B3; --g2: #48E1DF; }
-    * { box-sizing: border-box; margin: 0; }
+    :root {
+      --bg: #0b0f12;
+      --panel: #10171b;
+      --line: #1e2b30;
+      --text: #e8f1f0;
+      --muted: #94a9a7;
+      --dim: #6d8180;
+      --g1: #48E1B3;
+      --g2: #48E1DF;
+      --maxw: 860px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body, h1, h2, h3, p, ol, ul, li, figure { margin: 0; padding: 0; }
+    ol, ul { list-style: none; }
+
     body {
-      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 48px 20px; text-align: center; font-family: Lexend, system-ui, sans-serif; color: var(--text);
-      background: radial-gradient(ellipse at top, #12262a 0%, var(--bg) 60%);
+      font-family: Lexend, system-ui, -apple-system, sans-serif;
+      font-weight: 300;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
     }
-    img { width: 200px; height: auto; margin-bottom: 40px; }
+
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+
+    a { color: var(--g1); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:focus-visible, .btn:focus-visible {
+      outline: 2px solid var(--g2);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .gradient {
+      background: linear-gradient(135deg, var(--g1), var(--g2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* ---------- hero ---------- */
+    header.hero {
+      padding: 72px 0 64px;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% -10%, #12262a 0%, var(--bg) 62%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero img { width: 180px; height: auto; margin-bottom: 36px; }
     h1 {
-      font-weight: 600; font-size: clamp(1.8rem, 5vw, 3rem); line-height: 1.15; margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--g1), var(--g2)); -webkit-background-clip: text; background-clip: text; color: transparent;
+      font-weight: 600;
+      font-size: clamp(1.9rem, 5.4vw, 3rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
     }
-    p { max-width: 560px; font-weight: 300; font-size: 1.1rem; line-height: 1.7; color: var(--muted); }
-    .soon {
-      margin-top: 36px; padding: 8px 20px; border: 1px solid var(--g1); border-radius: 999px;
-      font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--g1);
+    .lede {
+      max-width: 36em;
+      margin: 0 auto;
+      font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+      color: var(--muted);
     }
-    footer { margin-top: 64px; font-size: .8rem; color: #56696a; }
+    .btn {
+      display: inline-block;
+      margin-top: 34px;
+      padding: 13px 28px;
+      font-size: .95rem;
+      font-weight: 500;
+      color: #07100d;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--g1), var(--g2));
+      border-radius: 999px;
+    }
+    .btn:hover { filter: brightness(1.08); }
+
+    /* ---------- sections ---------- */
+    section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+    h2 {
+      font-weight: 500;
+      font-size: clamp(1.35rem, 3.4vw, 1.75rem);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      margin-bottom: 22px;
+    }
+    section > .wrap > p { max-width: 40em; color: var(--muted); }
+    section > .wrap > p + p { margin-top: 16px; }
+
+    /* ---------- steps ---------- */
+    .steps { margin-top: 34px; counter-reset: step; }
+    .steps li {
+      position: relative;
+      counter-increment: step;
+      padding: 18px 0 18px 58px;
+      border-top: 1px solid var(--line);
+    }
+    .steps li:last-child { border-bottom: 1px solid var(--line); }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 20px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--g1);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--panel);
+    }
+    .steps h3, .steps p { max-width: 40em; }
+    .steps h3 {
+      font-size: 1.02rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .steps p { margin-top: 5px; font-size: .97rem; color: var(--muted); }
+
+    /* ---------- cards ---------- */
+    .cards {
+      margin-top: 32px;
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    }
+    .card {
+      padding: 26px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .card h3 {
+      font-size: 1.02rem;
+      font-weight: 500;
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .card p { font-size: .97rem; color: var(--muted); }
+
+    /* ---------- status + contact ---------- */
+    .status {
+      display: inline-block;
+      padding: 7px 16px;
+      font-size: .74rem;
+      font-weight: 400;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--g1);
+      border: 1px solid var(--g1);
+      border-radius: 999px;
+    }
+    #contact { text-align: center; border-bottom: none; }
+    #contact .wrap > p { margin-left: auto; margin-right: auto; }
+    .note { margin-top: 30px; font-size: .9rem; color: var(--dim); }
+
+    footer {
+      padding: 34px 0 48px;
+      font-size: .85rem;
+      color: var(--dim);
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 560px) {
+      .steps li { padding-left: 44px; }
+      .steps li::before { width: 28px; height: 28px; top: 21px; font-size: .76rem; }
+      section { padding: 52px 0; }
+      .card { padding: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
   </style>
 </head>
 <body>
-  <img src="logo.png" alt="Dextroverse">
-  <h1>From idea to physical part.</h1>
-  <p>
-    Dextroverse is building an AI-native platform that takes a product from description to
-    manufactured reality: AI-assisted design, rapid 3D-printed prototypes, and a direct path to
-    production. We're starting with on-demand industrial spare parts, so parts can be made when they're needed instead of being stocked.
-  </p>
-  <div class="soon">Coming soon</div>
-  <footer>&copy; 2026 Dextroverse</footer>
+
+  <header class="hero">
+    <div class="wrap">
+      <img src="logo.png" alt="Dextroverse" width="180">
+      <h1><span class="gradient">From idea to physical part.</span></h1>
+      <p class="lede">
+        Describe the part you need. Dextroverse designs it, measures it against what you
+        asked for, and makes it — with a record of every step.
+      </p>
+      <a class="btn" href="#contact">Tell us what you need made</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="what">
+      <div class="wrap">
+        <h2>A machine stops because one bracket cracked.</h2>
+        <p>
+          The part is discontinued, the drawing was never shared, or the minimum order is five
+          hundred. So the machine waits — for a catalogue lookup, a quote, a drawing, a shop.
+        </p>
+        <p>
+          Dextroverse exists to make one. We are building an AI-native route from a described
+          part to a finished part, starting with on-demand industrial spare parts, so a part can
+          be made when it is needed instead of stocked against the day it might be.
+        </p>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <h2>How it works</h2>
+        <p>
+          Seven steps. Each one hands the next a thing it can check, and each one is allowed to
+          refuse.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Describe it</h3>
+            <p>
+              Type it or say it, in the words you already use for the part. No CAD, no drawing
+              required.
+            </p>
+          </li>
+          <li>
+            <h3>Confirm what we heard</h3>
+            <p>
+              Every number is read back to you before anything is designed. A misheard dimension
+              is caught by you, in seconds — not by a part in your hand.
+            </p>
+          </li>
+          <li>
+            <h3>Design as code</h3>
+            <p>
+              The part is generated as a parametric model, not a static mesh. Change a dimension
+              and the part is rebuilt, not re-drawn.
+            </p>
+          </li>
+          <li>
+            <h3>Measure it against what you asked for</h3>
+            <p>
+              Each requirement is checked on the finished solid on its own terms: overall size,
+              every bolt hole probed individually, bores, and the regions that must contain
+              material. Anything we cannot measure is reported as not checked — never as passed.
+            </p>
+          </li>
+          <li>
+            <h3>Price it from the real file</h3>
+            <p>
+              The quote comes from a slice of the exact file that will be printed, not an
+              estimate of something like it. If any input behind the number is unconfirmed, no
+              price is offered at all.
+            </p>
+          </li>
+          <li>
+            <h3>A named human releases it</h3>
+            <p>
+              Before anything is made, a person approves the part, and the approval is a signed
+              statement verified against their key. No signature, nothing is made.
+            </p>
+          </li>
+          <li>
+            <h3>Make it, and account for it</h3>
+            <p>
+              The part is printed from the approved file and delivered with a certificate binding
+              the request, the spec you confirmed, every measurement taken, the files by content
+              hash, and who approved the release.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="different">
+      <div class="wrap">
+        <h2>What we do differently</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>A valid part is not the right part</h3>
+            <p>
+              A model can be flawless, the right size and the right weight, and still be the
+              wrong part — a flange with no holes in it passes every general check there is. So
+              we check the features you asked for, one at a time, instead of checking that the
+              geometry is well-formed and calling it correct.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Nothing is claimed that was not measured</h3>
+            <p>
+              Our records say what was measured and, just as loudly, what was not. An
+              unverifiable feature is flagged for a human rather than quietly counted as fine,
+              and a part we cannot account for is refused rather than shipped with a gap in its
+              paperwork.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Designed to refuse</h3>
+            <p>
+              Every gate fails closed. Missing price, missing signature, a file that does not
+              match the one that was approved — each one stops the part. The failure mode of this
+              pipeline is a question sent to a human, not a wrong part in a box.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Corrected by what we print</h3>
+            <p>
+              Every print is weighed and timed against what we predicted, and the gap is written
+              down rather than rounded away. Real parts are what tell us an estimate was wrong,
+              and they have — more than once. The platform gets more honest because things come
+              out of it, not because a model got bigger.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <p class="status">Platform in development</p>
+        <h2 style="margin-top:22px">Tell us what you need made.</h2>
+        <p>
+          We are taking on a small number of real parts while we build. If one is holding up a
+          machine, describe it to us — what it fits, what broke, what it has to do.
+        </p>
+        <a class="btn" href="mailto:ops@dextroverse.io?subject=Dextroverse%20%E2%80%94%20a%20part%20I%20need%20made">ops@dextroverse.io</a>
+        <p class="note">
+          The pipeline above is built and running internally. Customer accounts are not open yet.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">&copy; 2026 Dextroverse</div>
+  </footer>
+
 </body>
 </html>
