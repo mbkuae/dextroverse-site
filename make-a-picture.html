@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Make a picture of your idea with AI — Dextroverse</title>
+  <meta name="description" content="No photo of the part? Ask an AI tool for a picture, then add it to your request. We read the shape from it. You tell us the sizes.">
+  <link rel="canonical" href="https://dextroverse.io/make-a-picture">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dextroverse.io/make-a-picture">
+  <meta property="og:title" content="Make a picture of your idea with AI — Dextroverse">
+  <meta property="og:description" content="No photo of the part? Ask an AI tool for a picture, then add it to your request. We read the shape from it. You tell us the sizes.">
+  <meta property="og:image" content="https://dextroverse.io/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* Jura (Light, Medium), self-hosted; licence in fonts/Jura-OFL.txt. */
+    @font-face { font-family: Jura; font-style: normal; font-weight: 300; font-display: swap;
+                 src: url(fonts/jura-light.woff2) format("woff2"); }
+    @font-face { font-family: Jura; font-style: normal; font-weight: 500; font-display: swap;
+                 src: url(fonts/jura-medium.woff2) format("woff2"); }
+    :root {
+      --bg: #0b0f12;
+      --panel: #10171b;
+      --line: #1e2b30;
+      --text: #e8f1f0;
+      --muted: #94a9a7;
+      --dim: #6d8180;
+      --g1: #48E1B3;
+      --g2: #48E1DF;
+      --maxw: 860px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body, h1, h2, h3, p, ol, ul, li, figure { margin: 0; padding: 0; }
+    ol, ul { list-style: none; }
+
+    body {
+      font-family: Jura, system-ui, -apple-system, sans-serif;
+      font-weight: 300;
+      font-synthesis: none;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+
+    a { color: var(--g1); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:focus-visible, .btn:focus-visible {
+      outline: 2px solid var(--g2);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .gradient {
+      background: linear-gradient(135deg, var(--g1), var(--g2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* ---------- hero ---------- */
+    header.hero {
+      padding: 72px 0 64px;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% -10%, #12262a 0%, var(--bg) 62%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero img { width: 180px; height: auto; margin-bottom: 36px; }
+    h1 {
+      font-weight: 600;
+      font-size: clamp(1.9rem, 5.4vw, 3rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .lede {
+      max-width: 36em;
+      margin: 0 auto;
+      font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+      color: var(--muted);
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 34px;
+      padding: 13px 28px;
+      font-size: .95rem;
+      font-weight: 500;
+      color: #07100d;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--g1), var(--g2));
+      border-radius: 999px;
+    }
+    .btn:hover { filter: brightness(1.08); }
+
+    /* ---------- sections ---------- */
+    section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+    h2 {
+      font-weight: 500;
+      font-size: clamp(1.35rem, 3.4vw, 1.75rem);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      margin-bottom: 22px;
+    }
+    section > .wrap > p { max-width: 40em; color: var(--muted); }
+    section > .wrap > p + p { margin-top: 16px; }
+
+    /* ---------- steps ---------- */
+    .steps { margin-top: 34px; counter-reset: step; }
+    .steps li {
+      position: relative;
+      counter-increment: step;
+      padding: 18px 0 18px 58px;
+      border-top: 1px solid var(--line);
+    }
+    .steps li:last-child { border-bottom: 1px solid var(--line); }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 20px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--g1);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--panel);
+    }
+    .steps h3, .steps p { max-width: 40em; }
+    .steps h3 {
+      font-size: 1.02rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .steps p { margin-top: 5px; font-size: .97rem; color: var(--muted); }
+
+    /* ---------- cards ---------- */
+    .cards {
+      margin-top: 32px;
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    }
+    .card {
+      padding: 26px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .card h3 {
+      font-size: 1.02rem;
+      font-weight: 500;
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .card p { font-size: .97rem; color: var(--muted); }
+
+    /* ---------- status + contact ---------- */
+    .status {
+      display: inline-block;
+      padding: 7px 16px;
+      font-size: .74rem;
+      font-weight: 400;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--g1);
+      border: 1px solid var(--g1);
+      border-radius: 999px;
+    }
+    #contact { text-align: center; border-bottom: none; }
+    #contact .wrap > p { margin-left: auto; margin-right: auto; }
+    .note { margin-top: 30px; font-size: .9rem; color: var(--dim); }
+
+    footer {
+      padding: 34px 0 48px;
+      font-size: .85rem;
+      color: var(--dim);
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 560px) {
+      .steps li { padding-left: 44px; }
+      .steps li::before { width: 28px; height: 28px; top: 21px; font-size: .76rem; }
+      section { padding: 52px 0; }
+      .card { padding: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    /* ---------- make-a-picture ---------- */
+    .guide h2 { margin-top: 44px; }
+    .guide h2:first-child { margin-top: 0; }
+    .guide p { max-width: 40em; color: var(--muted); }
+    .guide p + p { margin-top: 14px; }
+    .promptbox { position: relative; margin: 20px 0 0; max-width: 40em; }
+    .promptbox pre {
+      margin: 0; padding: 22px; white-space: pre-wrap; overflow-wrap: anywhere;
+      font: inherit; font-size: .97rem; color: var(--text);
+      background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    }
+    .copy {
+      display: none; margin-top: 12px; padding: 9px 20px; font: inherit; font-size: .9rem; font-weight: 500;
+      color: var(--g1); background: transparent; border: 1px solid var(--g1); border-radius: 999px; cursor: pointer;
+    }
+    .copy:hover { background: var(--panel); }
+    .copy:focus-visible { outline: 2px solid var(--g2); outline-offset: 3px; }
+    .js .copy { display: inline-block; }
+    .fine { margin-top: 30px; font-size: .9rem; color: var(--dim); max-width: 40em; }
+    #contact .fine { margin-left: auto; margin-right: auto; }
+  </style>
+
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <a href="/" aria-label="Dextroverse home"><img src="logo.png" alt="Dextroverse" width="180"></a>
+      <h1 class="gradient">Make a picture of your idea with AI</h1>
+      <p class="lede">No photo of the part? Ask an AI tool for a picture, then add it to your request. We read the shape from it. You tell us the sizes.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="guide">
+      <div class="wrap">
+        <h2>Step 1: Pick a tool</h2>
+        <p>Any of these works: ChatGPT (image creation), Gemini, Midjourney, Copilot Designer. Use the one you already have.</p>
+
+        <h2>Step 2: Copy this prompt and fill the brackets</h2>
+        <div class="promptbox">
+          <pre><code id="prompt">A simple product design image of [what it is, e.g. a dashboard phone holder] on a plain white background. One object only. Show it from the side, straight on, with even light and no shadows. No text, no logos, no people. Plain shapes, no tiny details.</code></pre>
+          <button class="copy" type="button" data-copy="prompt">Copy</button>
+        </div>
+
+        <h2>Step 3: Ask for more views</h2>
+        <p>Send a second message:</p>
+        <div class="promptbox">
+          <pre><code id="views">Now show the same object from the top and from the front, same style.</code></pre>
+          <button class="copy" type="button" data-copy="views">Copy</button>
+        </div>
+        <p style="margin-top:16px">Three views (side, top, front) tell us the most.</p>
+
+        <h2>Step 4: Add what a picture cannot show</h2>
+        <p>Write in the box what it is for, where it goes, its sizes in millimetres (length, width, height, hole sizes), and the colour you want.</p>
+        <p>Example: “Holder for a 7 inch screen, 180 mm wide, 60 mm deep, clips onto a 3 mm dashboard edge.”</p>
+
+        <h2>Step 5: Upload and check</h2>
+        <p>Add 1 to 3 pictures. We read the shape, say what we could not tell, and read the sizes back to you. You confirm before anything is made.</p>
+
+        <h2>What works best</h2>
+        <p>Boxes, holders, brackets, stands, plates, covers and simple housings.</p>
+        <p>Ask first about logos and branded designs, people, faces, very fine or organic detail, and anything that has to take heat. For heat, we suggest the right material.</p>
+
+        <h2>Keep in mind</h2>
+        <p>A picture shows the shape, not the size. Pictures made by AI are guesses, so we never use them to set a size. Only the sizes you confirm count.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <h2>Ready with your picture?</h2>
+        <p>Sign in with your email, add it to your request, and see the price.</p>
+        <a class="btn" href="https://app.dextroverse.io">Get a quote</a>
+        <p class="fine">Your pictures are used only to read your part. We remove location and camera details, keep them with your request, and delete them when the request is deleted.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">&copy; 2026 Dextroverse</div>
+  </footer>
+
+  <script>
+    document.documentElement.classList.add('js');
+    document.querySelectorAll('.copy').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = document.getElementById(b.dataset.copy).textContent;
+        function done() { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 2000); }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(t).then(done, function () { select(); });
+        } else { select(); }
+        function select() {
+          var r = document.createRange(); r.selectNodeContents(document.getElementById(b.dataset.copy));
+          var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
