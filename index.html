@@ -29,10 +29,12 @@
     "sameAs": ["https://instagram.com/dextroverse3d", "https://wa.me/971504556912"]
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* Jura (Light, Medium), self-hosted; licence in fonts/Jura-OFL.txt. */
+    @font-face { font-family: Jura; font-style: normal; font-weight: 300; font-display: swap;
+                 src: url(fonts/jura-light.woff2) format("woff2"); }
+    @font-face { font-family: Jura; font-style: normal; font-weight: 500; font-display: swap;
+                 src: url(fonts/jura-medium.woff2) format("woff2"); }
     :root {
       --bg: #0b0f12;
       --panel: #10171b;
@@ -51,8 +53,9 @@
     ol, ul { list-style: none; }
 
     body {
-      font-family: Lexend, system-ui, -apple-system, sans-serif;
+      font-family: Jura, system-ui, -apple-system, sans-serif;
       font-weight: 300;
+      font-synthesis: none;
       font-size: 1.05rem;
       line-height: 1.7;
       color: var(--text);
