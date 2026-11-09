@@ -324,7 +324,7 @@ h1{font-weight:500;line-height:1.1}
 @media(max-width:860px){.ckw,.ckhome{grid-template-columns:1fr}}
 @media(min-width:861px){.clk .ckstage{min-height:360px;display:flex;flex-direction:column;justify-content:center}.clk .ckstage .cap{margin-top:auto}}
 
-.sw-midnight{background:#14132a}
+.sw-midnight{background:#0b0a1b}
 .two[hidden]{display:none}.ckc .two{margin-top:16px}
 .ckc input[type=text]::placeholder{color:var(--dim);opacity:1}
 @media(max-width:860px){.motion-chip{left:auto;right:12px}body{padding-bottom:64px}}
@@ -340,3 +340,7 @@ h1{font-weight:500;line-height:1.1}
 .legal a:hover{color:var(--text)}
 .d1{--d:.08s}.d2{--d:.16s}.d3{--d:.24s}
 .spec caption{text-align:left;padding-bottom:6px}
+
+/* letter colour picker: unavailable options stay visible, greyed, and explain themselves */
+.opts input[aria-disabled=true]+span{opacity:.45;cursor:not-allowed;text-decoration:line-through;text-decoration-color:var(--dim)}
+.ckc fieldset .cap{margin-top:10px}
