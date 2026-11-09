@@ -43,10 +43,10 @@ function draw(root){
   svg.setAttribute('aria-label','Illustration of a keyring with the letters '+s.split('').join(' ')+', '+NAME[k]+' keys with '+LNAME[l]+' letters');
   msg.textContent=m;if(live)live.textContent=empty?'Type a name to see your keys. The example shows NAME.':'Showing '+n+' keys: '+s.split('').join(', ')+', '+NAME[k]+' with '+LNAME[l]+' letters.';
   if(wa){var t='Hello, I would like a custom clicker. Name: '+clean.toUpperCase()+'. Colour: '+NAME[k]+'. Letters: '+LNAME[l]+'.';
-   if(empty){wa.removeAttribute('href');wa.setAttribute('aria-disabled','true')}else{wa.href='https://wa.me/971504556912?text='+encodeURIComponent(t);wa.removeAttribute('aria-disabled')}
+   if(empty){wa.setAttribute('href','#');wa.setAttribute('aria-disabled','true')}else{wa.href='https://wa.me/971504556912?text='+encodeURIComponent(t);wa.removeAttribute('aria-disabled')}
    if(wan)wan.textContent=empty?'Add your name to send it.':'Opens WhatsApp with your name and colour in the message.'}
  }
- if(wa)wa.addEventListener('click',function(e){if(wa.getAttribute('aria-disabled')==='true'){e.preventDefault();f.focus()}});
+ if(wa)wa.addEventListener('click',function(e){if(wa.getAttribute('aria-disabled')==='true'){e.preventDefault();if(live){live.textContent='';setTimeout(function(){live.textContent='Add your name to send it.'},40)}f.focus()}});
  f.addEventListener('compositionstart',function(){composing=true});f.addEventListener('compositionend',function(){composing=false;render()});f.addEventListener('input',render);root.addEventListener('change',render);render();
 }
 document.querySelectorAll('[data-clicker]').forEach(draw);
