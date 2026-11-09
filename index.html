@@ -346,7 +346,7 @@ function setPaused(v,auto){
  paused=v;btn.setAttribute('aria-pressed',v);btn.textContent=v?'Play motion':'Pause motion';root.classList.toggle('dx-paused',v);
  if(!v&&auto!==true){if(t>75)t=0;if(F.auto==='run')F.t0=performance.now()-F.p*4200;startAuto();fKick()}
  sync();
- if(window.Alive&&document.documentElement.classList.contains('alive-paused')!==v)Alive.pause(v);
+ if(auto!==true&&window.Alive&&document.documentElement.classList.contains('alive-paused')!==v)Alive.pause(v);
 }
 function init(){
  root.classList.toggle('dx-static',isStatic());
@@ -384,7 +384,7 @@ window.__diagram={get F(){return F},get running(){return running},get t(){return
     <nav aria-label="Footer"><h2>Order</h2><a href="https://app.dextroverse.io/shop">Browse parts</a><a href="https://app.dextroverse.io/start">Describe what you need</a><a href="/#how">Where to start</a><a href="/clickers/">Custom clickers</a></nav>
     <nav aria-label="Contact"><h2>Talk to us</h2><a href="mailto:hello@dextroverse.io">hello@dextroverse.io</a><a href="https://wa.me/971504556912?text=Hello%2C%20I%20would%20like%20to%20ask%20about%20a%20part.">WhatsApp</a><a href="https://instagram.com/dextroverse3d">Instagram</a></nav>
   </div>
-  <p class="legal">Every order comes with a certificate.<br>&copy; Dextroverse &middot; <a href="/privacy/">Privacy</a></p>
+  <p class="legal">&copy; Dextroverse &middot; <a href="/privacy/">Privacy</a></p>
 </footer>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "39279fbf3c28419c92095501a5f7bce7"}'></script><!-- End Cloudflare Web Analytics -->
 </body></html>
