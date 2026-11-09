@@ -1,4 +1,4 @@
-/* alive.js - subtle micro-motion layer. Vanilla, no deps. API: README.md (data-alive="..."). */
+/* alive.js - subtle micro-motion layer. Vanilla, no deps. Attributes: data-alive="...". */
 (() => {
   'use strict';
   const D = document, H = D.documentElement, W = window;
