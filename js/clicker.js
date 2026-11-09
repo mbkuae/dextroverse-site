@@ -4,7 +4,7 @@
 (function(){
 var PAL={white:'#eef0ff',black:'#0b0a1b',grey:'#a9abc4',purple:'#6b4fd6'};
 var NAME={white:'White',black:'Black',grey:'Grey',purple:'Purple sparkle'};
-var LNAME={white:'White',black:'Black',grey:'Grey',purple:'Purple'};
+var LNAME={white:'White',black:'Black',grey:'Grey',purple:'Purple sparkle'};
 var MIN=4.5,ORDER=['white','black','grey','purple'];
 function L(h){var c=[1,3,5].map(function(i){var v=parseInt(h.substr(i,2),16)/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
 function cr(a,b){var x=L(PAL[a]),y=L(PAL[b]);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
@@ -43,7 +43,7 @@ function draw(root){
   svg.setAttribute('aria-label','Illustration of a keyring with the letters '+s.split('').join(' ')+', '+NAME[k]+' keys with '+LNAME[l]+' letters');
   msg.textContent=m;if(live)live.textContent=empty?'Type a name to see your keys. The example shows NAME.':'Showing '+n+' keys: '+s.split('').join(', ')+', '+NAME[k]+' with '+LNAME[l]+' letters.';
   if(wa){var t='Hello, I would like a custom clicker. Name: '+clean.toUpperCase()+'. Colour: '+NAME[k]+'. Letters: '+LNAME[l]+'.';
-   if(empty){wa.setAttribute('href','#');wa.setAttribute('aria-disabled','true')}else{wa.href='https://wa.me/971504556912?text='+encodeURIComponent(t);wa.removeAttribute('aria-disabled')}
+   if(empty){wa.setAttribute('href','#');wa.setAttribute('aria-disabled','true');wa.setAttribute('aria-describedby','cn')}else{wa.href='https://wa.me/971504556912?text='+encodeURIComponent(t);wa.removeAttribute('aria-disabled')}
    if(wan)wan.textContent=empty?'Add your name to send it.':'Opens WhatsApp with your name and colour in the message.'}
  }
  if(wa)wa.addEventListener('click',function(e){if(wa.getAttribute('aria-disabled')==='true'){e.preventDefault();if(live){live.textContent='';setTimeout(function(){live.textContent='Add your name to send it.'},40)}f.focus()}});
