@@ -1,327 +1,129 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dextroverse — Describe the part. We make it.</title>
-  <meta name="description" content="3D-printed in PLA or PETG and delivered across the UAE. You see the price before you order.">
-  <link rel="canonical" href="https://dextroverse.io/">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://dextroverse.io/">
-  <meta property="og:title" content="Dextroverse — Describe the part. We make it.">
-  <meta property="og:description" content="3D-printed in PLA or PETG and delivered across the UAE. You see the price before you order.">
-  <meta property="og:image" content="https://dextroverse.io/logo.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dextroverse — Describe the part. We make it.">
-  <meta name="twitter:description" content="3D-printed in PLA or PETG and delivered across the UAE. You see the price before you order.">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Dextroverse",
-    "url": "https://dextroverse.io/",
-    "logo": "https://dextroverse.io/logo.png",
-    "description": "3D-printed in PLA or PETG and delivered across the UAE. You see the price before you order.",
-    "email": "hello@dextroverse.io",
-    "telephone": "+971504556912",
-    "areaServed": "AE",
-    "sameAs": ["https://instagram.com/dextroverse3d", "https://wa.me/971504556912"]
-  }
-  </script>
-  <style>
-    /* Jura (Light, Medium), self-hosted; licence in fonts/Jura-OFL.txt. */
-    @font-face { font-family: Jura; font-style: normal; font-weight: 300; font-display: swap;
-                 src: url(fonts/jura-light.woff2) format("woff2"); }
-    @font-face { font-family: Jura; font-style: normal; font-weight: 500; font-display: swap;
-                 src: url(fonts/jura-medium.woff2) format("woff2"); }
-    :root {
-      --bg: #0b0f12;
-      --panel: #10171b;
-      --line: #1e2b30;
-      --text: #e8f1f0;
-      --muted: #94a9a7;
-      --dim: #6d8180;
-      --g1: #48E1B3;
-      --g2: #48E1DF;
-      --maxw: 860px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body, h1, h2, h3, p, ol, ul, li, figure { margin: 0; padding: 0; }
-    ol, ul { list-style: none; }
-
-    body {
-      font-family: Jura, system-ui, -apple-system, sans-serif;
-      font-weight: 500;
-      font-synthesis: none;
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: var(--text);
-      background: var(--bg);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
-
-    a { color: var(--g1); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-    a:focus-visible, .btn:focus-visible {
-      outline: 2px solid var(--g2);
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    .gradient {
-      background: linear-gradient(135deg, var(--g1), var(--g2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    /* ---------- hero ---------- */
-    header.hero {
-      padding: 72px 0 64px;
-      text-align: center;
-      background: radial-gradient(ellipse at 50% -10%, #12262a 0%, var(--bg) 62%);
-      border-bottom: 1px solid var(--line);
-    }
-    .hero img { width: 180px; height: auto; margin-bottom: 36px; }
-    h1 {
-      font-weight: 600;
-      font-size: clamp(1.9rem, 5.4vw, 3rem);
-      line-height: 1.12;
-      letter-spacing: -0.02em;
-      margin-bottom: 18px;
-    }
-    .lede {
-      max-width: 36em;
-      margin: 0 auto;
-      font-size: clamp(1.05rem, 2.4vw, 1.2rem);
-      color: var(--muted);
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 34px;
-      padding: 13px 28px;
-      font-size: .95rem;
-      font-weight: 500;
-      color: #07100d;
-      text-decoration: none;
-      background: linear-gradient(135deg, var(--g1), var(--g2));
-      border-radius: 999px;
-    }
-    .btn:hover { filter: brightness(1.08); }
-
-    /* ---------- sections ---------- */
-    section { padding: 64px 0; border-bottom: 1px solid var(--line); }
-    h2 {
-      font-weight: 500;
-      font-size: clamp(1.35rem, 3.4vw, 1.75rem);
-      letter-spacing: -0.01em;
-      line-height: 1.25;
-      margin-bottom: 22px;
-    }
-    section > .wrap > p { max-width: 40em; color: var(--muted); }
-    section > .wrap > p + p { margin-top: 16px; }
-
-    /* ---------- steps ---------- */
-    .steps { margin-top: 34px; counter-reset: step; }
-    .steps li {
-      position: relative;
-      counter-increment: step;
-      padding: 18px 0 18px 58px;
-      border-top: 1px solid var(--line);
-    }
-    .steps li:last-child { border-bottom: 1px solid var(--line); }
-    .steps li::before {
-      content: counter(step);
-      position: absolute;
-      left: 0;
-      top: 20px;
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      font-size: .82rem;
-      font-weight: 500;
-      color: var(--g1);
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: var(--panel);
-    }
-    .steps h3, .steps p { max-width: 40em; }
-    .steps h3 {
-      font-size: 1.02rem;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.45;
-    }
-    .steps p { margin-top: 5px; font-size: .97rem; color: var(--muted); }
-
-    /* ---------- cards ---------- */
-    .cards {
-      margin-top: 32px;
-      display: grid;
-      gap: 18px;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    }
-    .card {
-      padding: 26px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-    }
-    .card h3 {
-      font-size: 1.02rem;
-      font-weight: 500;
-      line-height: 1.45;
-      margin-bottom: 10px;
-    }
-    .card p { font-size: .97rem; color: var(--muted); }
-
-    /* ---------- status + contact ---------- */
-    .status {
-      display: inline-block;
-      padding: 7px 16px;
-      font-size: .74rem;
-      font-weight: 400;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--g1);
-      border: 1px solid var(--g1);
-      border-radius: 999px;
-    }
-    #contact { text-align: center; border-bottom: none; }
-    #contact .wrap > p { margin-left: auto; margin-right: auto; }
-    .note { margin-top: 30px; font-size: .9rem; color: var(--dim); }
-
-    footer {
-      padding: 34px 0 48px;
-      font-size: .85rem;
-      color: var(--dim);
-      text-align: center;
-      border-top: 1px solid var(--line);
-    }
-
-    @media (max-width: 560px) {
-      .steps li { padding-left: 44px; }
-      .steps li::before { width: 28px; height: 28px; top: 21px; font-size: .76rem; }
-      section { padding: 52px 0; }
-      .card { padding: 22px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-    }
-  </style>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "39279fbf3c28419c92095501a5f7bce7"}'></script><!-- End Cloudflare Web Analytics -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dextroverse | Describe the part. See the price.</title>
+<meta name="description" content="Describe any part in plain words. We model it and show you the price before you order. Every piece comes with a certificate of the exact design.">
+<link rel="canonical" href="https://dextroverse.io/">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dextroverse">
+<meta property="og:url" content="https://dextroverse.io/">
+<meta property="og:title" content="Dextroverse | Describe the part. See the price.">
+<meta property="og:description" content="Describe any part in plain words. We model it and show you the price before you order. Every piece comes with a certificate of the exact design.">
+<meta property="og:image" content="https://dextroverse.io/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dextroverse | Describe the part. See the price.">
+<meta name="twitter:description" content="Describe any part in plain words. We model it and show you the price before you order. Every piece comes with a certificate of the exact design.">
+<meta name="twitter:image" content="https://dextroverse.io/logo.png">
+<link rel="preload" href="/fonts/jura-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/jura-medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dextroverse",
+  "url": "https://dextroverse.io/",
+  "logo": "https://dextroverse.io/logo.png",
+  "description": "Describe any part in plain words. We model it and show you the price before you order. Every piece comes with a certificate of the exact design.",
+  "email": "hello@dextroverse.io",
+  "telephone": "+971504556912",
+  "areaServed": "AE",
+  "sameAs": ["https://instagram.com/dextroverse3d", "https://wa.me/971504556912"]
+}
+</script>
 </head>
-<body>
+<body data-alive="ring"><a class="skip" href="#main">Skip to content</a>
+<header class="top" id="top">
+  <a class="brand" href="/" aria-label="Dextroverse home"><img src="/brand/mark.png" alt="" width="32" height="27"><img src="/brand/wordmark-white.png" alt="Dextroverse" width="115" height="13"></a>
+  <button class="motion-btn" id="motion" data-alive-pause type="button" aria-pressed="false" hidden><span class="w">Pause</span><span class="ml"> motion</span></button>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav id="nav" aria-label="Main" data-open="false">
+    <a href="https://app.dextroverse.io">Browse parts</a>
+    <a href="/clickers/" data-nav="clickers">Custom clickers</a>
+    <a href="https://app.dextroverse.io">Describe a part</a>
+    <a href="/#how">How it works</a>
+  </nav>
+</header>
+<button class="motion-chip" id="chip" type="button" hidden aria-label="Pause motion">Pause</button>
+<main id="main">
+<section class="hero" id="describe" data-alive="backdrop halo">
+  <div class="lat" aria-hidden="true"><img class="alive-bleed" src="/media/lat/gyroid-1280.webp" srcset="/media/lat/gyroid-640.webp 640w, /media/lat/gyroid-1280.webp 1280w" sizes="100vw" alt="" width="1280" height="720" fetchpriority="high"><video class="alive-bleed" muted playsinline preload="none" data-lat="gyroid"><source src="/media/lat/gyroid-720.webm" type="video/webm" media="(min-width:900px)"><source src="/media/lat/gyroid-720.mp4" type="video/mp4" media="(min-width:900px)"><source src="/media/lat/gyroid-360.mp4" type="video/mp4" media="(max-width:699px)"></video></div>
+  <div class="alive-clearzone" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+    <div class="hero-copy" data-alive-calm>
+      <h1>Describe the part. See the price.</h1>
+      <p class="lead">Say what the part does and how big it is. We model it and show you the price before you order.</p>
+      <div class="ask2"><div class="lbrow"><p class="cap" id="exl">Describe the part</p><span class="xl">Example</span></div><q class="exq" aria-labelledby="exl">A round flange, 80 mm across, with a 20 mm bore and four bolt holes.</q><div class="askrow"><a class="btn" href="https://app.dextroverse.io" data-alive="magnetic">See the price</a><a class="tl" data-alive="link" href="https://app.dextroverse.io">Browse parts</a></div></div>
+          </div>
+    <figure class="hero-part" data-alive-part><img src="/media/flange-600.webp" srcset="/media/flange-600.webp 600w, /media/flange-1000.webp 1000w" sizes="(max-width:860px) 80vw, 460px" alt="Round bolt-on flange, illustration" width="1000" height="750" fetchpriority="high"><figcaption class="cap">Illustration of an 80 mm flange.</figcaption></figure>
+  </div>
+</section>
 
-  <header class="hero">
-    <div class="wrap">
-      <a href="/" aria-label="Dextroverse home"><img src="logo.png" alt="Dextroverse" width="180"></a>
-      <h1><span class="gradient">Describe the part. We make it.</span></h1>
-      <p class="lede">
-        3D-printed in PLA or PETG and delivered across the UAE. You see the price before you order.
-      </p>
-      <a class="btn" href="https://app.dextroverse.io">Get a quote</a>
-      <p class="note">or message us on <a href="https://wa.me/971504556912">WhatsApp</a>, <a href="https://instagram.com/dextroverse3d">Instagram</a>, or <a href="mailto:hello@dextroverse.io">hello@dextroverse.io</a></p>
+<section class="wrap rb" id="readback" aria-labelledby="rbh">
+  <div><h2 id="rbh">We read it back</h2>
+  <p class="note">You see the part described back to you and confirm it before any price is shown.</p></div>
+  <div class="talk" data-alive="lift">
+    <table class="spec"><caption class="cap"><span class="xl">Example</span></caption><tr><th>Part</th><td>Round flange</td></tr><tr><th>Across</th><td>80 mm</td></tr><tr><th>Bore</th><td>20 mm</td></tr><tr><th>Holes</th><td>4</td></tr>
+    <tr><th>Thickness</th><td>6 mm</td></tr>
+    <tr><th>Price</th><td class="price-line">Your price in AED shows here after you confirm.</td></tr></table>
+    <a class="tl" data-alive="link" href="https://app.dextroverse.io">Describe your part</a>
+  </div>
+</section>
+
+<section class="chw" aria-label="From your words to your certificate">
+  <div class="lat" aria-hidden="true"><img src="/media/lat/membrane-s2.webp" alt="" width="1280" height="720" loading="lazy"></div>
+  <div class="wrap">
+  <ol class="chain" id="how" aria-label="From your words to your certificate">
+    <li data-alive="reveal"><p class="n">01</p><h3>Words</h3><p>In your own words, with sizes.</p><div class="mini"><b>&ldquo;A round flange, 80 mm across, with a 20 mm bore and four bolt holes.&rdquo;</b></div></li>
+    <li data-alive="reveal" class="d1"><p class="n">02</p><h3>Model</h3><p>We model it and read it back to you.</p><div class="mini"><div class="r"><span>Part</span><b>Round flange</b></div><div class="r"><span>Across</span><b>80 mm</b></div><div class="r"><span>Bore</span><b>20 mm</b></div><div class="r"><span>Holes</span><b>4</b></div></div></li>
+    <li data-alive="reveal" class="d2"><p class="n">03</p><h3>Price</h3><p>You see it before you order.</p><div class="mini"><div class="r"><span>Material</span><b>PLA</b></div><div class="r"><span>Price</span><b>Your price in AED shows here</b></div></div></li>
+    <li data-alive="reveal" class="d3"><p class="n">04</p><h3>Certificate</h3><p>Delivered with the piece.</p><div class="mini"><div class="r"><span>Design</span><b>flange-80-6</b></div><div class="r"><span>Material</span><b>PLA</b></div></div></li>
+  </ol></div>
+</section>
+
+<section class="wrap ckhome" aria-label="Custom clickers">
+  <div><h2>Custom clickers</h2><p class="note">Your name on a keyring, one key for each letter. Type it and see it.</p><p class="links"><a class="tl" data-alive="link" href="/clickers/">Make yours</a></p></div>
+  <div class="ckw" data-clicker data-c="h">
+  <figure class="ckstage" data-alive-part><svg class="ck" role="img" viewBox="0 0 356 124" aria-label="Illustration of a keyring"></svg><figcaption class="cap">Illustration. Our own design, drawn for this page.</figcaption></figure>
+  <div class="ckc"><label for="nmh">Name or word</label><input id="nmh" data-c-name type="text" maxlength="14" autocomplete="off" inputmode="text" placeholder="Up to 10 letters" aria-describedby="hinth"><p class="cap" id="hinth"><span data-c-msg role="alert"></span> Letters only, up to 10.</p>
+  
+  <p class="sr" role="status" data-c-live></p></div></div>
+</section>
+
+<section class="wrap wm" aria-label="From words to a part">
+  <div class="wmt"><h2>Your words become a model you can check.</h2><p class="note">We read it back before any price is shown.</p></div>
+  <div><div class="lat-box" data-alive-part><div class="lat" aria-hidden="true"><img src="/media/lat/membrane-1280.webp" srcset="/media/lat/membrane-640.webp 640w, /media/lat/membrane-1280.webp 1280w" sizes="(max-width:900px) 100vw, 58vw" alt="" width="1280" height="720" loading="lazy"><video muted playsinline preload="none" data-lat="membrane"><source src="/media/lat/membrane-720.webm" type="video/webm" media="(min-width:900px)"><source src="/media/lat/membrane-720.mp4" type="video/mp4" media="(min-width:900px)"><source src="/media/lat/membrane-360.mp4" type="video/mp4" media="(max-width:699px)"></video></div></div></div><p class="vtag">Abstract render. Illustration.</p></div>
+</section>
+
+<section class="wrap claims" data-alive-calm aria-label="What we do">
+  <div id="describe-how"><h2>Describe any part in plain words. We model it and show you the price before you order.</h2>
     </div>
-  </header>
+  <div><h2>Whatever the size, we find the right printer in the UAE and see the job through to delivery.</h2>
+    <ol class="route" aria-label="Your part to delivery"><li>Your part</li><li>The right printer</li><li>Delivered in the UAE</li></ol></div>
+  <div id="certificate"><h2>Every piece comes with a certificate that records the exact design that was printed.</h2>
+    <div class="cert" data-alive="lift"><div><p class="why-cert">Check later exactly what was printed.</p>
+      <dl><dt>Design</dt><dd>Round bolt-on flange, 80 mm across, 6 mm thick</dd><dt>Matches</dt><dd>The design you confirmed before you ordered</dd></dl><p class="tag">Example.</p></div>
+      <div><div class="lat-box cert-stage" data-alive-part><div class="lat" aria-hidden="true"><img src="/media/lat/gyroid-s1.webp" alt="" width="1280" height="720" loading="lazy"></div><img class="cp" src="/media/flange-600.webp" srcset="/media/flange-600.webp 600w, /media/flange-1000.webp 1000w" sizes="(max-width:860px) 80vw, 260px" alt="Round bolt-on flange, illustration" width="1000" height="750" loading="lazy"></div><p class="vtag">Illustration.</p></div></div>
+  </div>
+</section>
 
-  <main>
-
-    <section id="how">
-      <div class="wrap">
-        <h2>How it works</h2>
-        <p>
-          All online. Sign in with your email.
-        </p>
-        <ol class="steps">
-          <li>
-            <h3>Tell us what you need</h3>
-            <p>
-              In your own words: what it is, its sizes, what it is for.
-            </p>
-          </li>
-          <li>
-            <h3>We play it back</h3>
-            <p>
-              We read the sizes back to you to confirm before anything is made.
-            </p>
-          </li>
-          <li>
-            <h3>See the price</h3>
-            <p>
-              You see the price before you order.
-            </p>
-          </li>
-          <li>
-            <h3>Made and delivered</h3>
-            <p>
-              We get the part made and delivered to you.
-            </p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="today">
-      <div class="wrap">
-        <h2>What we make today</h2>
-        <div class="cards">
-          <div class="card">
-            <h3>Plastic parts, 3D-printed</h3>
-            <p>In PLA, or in PETG for heat and knocks.</p>
-          </div>
-          <div class="card">
-            <h3>Any size</h3>
-            <p>Tell us the size. We find the right printer for it and show you the price before you order.</p>
-          </div>
-          <div class="card">
-            <h3>Ready in days</h3>
-            <p>
-              Your quote shows its own ready date. Most small parts are ready in 1–2 days
-              (estimate).
-            </p>
-          </div>
-          <div class="card">
-            <h3>Delivery in the UAE</h3>
-            <p>AED 25 across the UAE, AED 40 to remote areas, added to your invoice.</p>
-          </div>
-          <div class="card">
-            <h3>Anything else</h3>
-            <p>
-              Metal, other plastics, painting or fitting: quoted on request at
-              <a href="mailto:hello@dextroverse.io">hello@dextroverse.io</a>.
-            </p>
-          </div>
-        </div>
-        <p>
-          We are adding more services, so anyone can get the product they describe made.
-        </p>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="wrap">
-        <p class="status">Open to customers</p>
-        <h2 style="margin-top:22px">Get a price for your part.</h2>
-        <p>
-          Sign in with your email, describe the part, and see the price. Want to talk
-          first? Email <a href="mailto:hello@dextroverse.io?subject=Dextroverse%20%E2%80%94%20a%20part%20I%20need%20made">hello@dextroverse.io</a>.
-        </p>
-        <a class="btn" href="https://app.dextroverse.io">Get a quote</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="wrap">&copy; 2026 Dextroverse</div>
-  </footer>
-
-</body>
-</html>
+<section class="wrap find" aria-label="Browse parts">
+  <form action="https://app.dextroverse.io" method="get" role="search"><label class="skip" for="sq">Search parts</label><input id="sq" name="q" type="search" placeholder="Search parts"><button class="btn ghost" type="submit">Search</button></form>
+  <a class="tl" data-alive="link" href="https://app.dextroverse.io">Browse parts</a>
+</section>
+</main>
+<script src="/js/nav.js"></script><script src="/js/clicker.js"></script><script src="/js/lat.js"></script><script src="/js/alive.js" defer></script>
+<footer class="foot">
+  <div class="foot-band" aria-hidden="true"><div class="lat"><img src="/media/lat/gyroid-s2.webp" alt="" width="1280" height="720" loading="lazy"></div></div>
+  <div class="foot-grid">
+    <div><a class="brand" href="/"><img src="/brand/mark.png" alt="" width="32" height="27"><img src="/brand/wordmark-white.png" alt="Dextroverse" width="115" height="13"></a></div>
+    <nav aria-label="Footer"><h2>Order</h2><a href="https://app.dextroverse.io">Browse parts</a><a href="https://app.dextroverse.io">Describe a part</a><a href="/#how">How it works</a><a href="/clickers/">Custom clickers</a></nav>
+    <nav aria-label="Contact"><h2>Talk to us</h2><a href="mailto:hello@dextroverse.io">hello@dextroverse.io</a><a href="https://wa.me/971504556912">WhatsApp</a><a href="https://instagram.com/dextroverse3d">Instagram</a></nav>
+  </div>
+  <p class="legal">&copy; Dextroverse &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/brochure.pdf">Brochure</a></p>
+</footer>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "39279fbf3c28419c92095501a5f7bce7"}'></script><!-- End Cloudflare Web Analytics -->
+</body></html>
