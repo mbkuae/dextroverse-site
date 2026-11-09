@@ -385,3 +385,21 @@ h1{font-weight:500;line-height:1.1}
 @media(max-width:260px){.top .brand img:last-child{display:none}}
 /* anchored sections land below the 72px sticky header on phones */
 @media(max-width:860px){[id]{scroll-margin-top:84px}}
+
+/* prompt-first hero */
+.hero .lead.lead{background:rgba(11,10,27,.9);padding:12px 16px;border-radius:8px;text-shadow:none;margin-top:20px;max-width:30em}
+.pf{display:grid;gap:12px;margin-top:16px;max-width:560px;justify-items:start;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}
+.pf label{color:var(--text);font-size:14px}
+.pf textarea{display:block;width:100%;resize:vertical;font:inherit;font-size:16px;line-height:1.5;min-height:88px;background:var(--bg);border:1px solid var(--dim);border-radius:8px;color:var(--text);padding:12px 16px}
+.pf textarea::placeholder{color:var(--dim)}
+.pf textarea:focus-visible{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:3px}
+.pf-err{margin:0;color:var(--text);font-size:14px}.pf-err:empty{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);padding:0;border:0}
+.pf-err:not(:empty){border-left:2px solid var(--accent);padding-left:10px}
+.pf-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none;max-width:640px}
+.pf-chip{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border:1px solid var(--dim);border-radius:999px;color:var(--text);text-decoration:none;font-size:14px;background:rgba(11,10,27,.92)}
+.pf-chip:hover{border-color:var(--accent);background:var(--panel)}
+.pf-refine{margin:16px 0 0;color:var(--text);font-size:14px;background:rgba(11,10,27,.9);padding:8px 12px;border-radius:8px;width:fit-content;max-width:100%}
+.hero h1,.hero .lead,.pf-refine{text-wrap:balance}
+.top nav a,.top .menu-btn,.top .motion-btn{min-height:44px}
+@media(max-width:860px){.hero{padding-top:48px;padding-bottom:20px;min-height:0}.hero .lead.lead{font-size:16px;padding:8px 12px}.pf{padding:12px;gap:8px}.pf textarea{min-height:64px;padding:8px 12px}.pf-refine{padding:4px 12px}.pf-chip{padding:4px 14px}.hero-in{gap:0}.hero h1{margin:0}.hero .lead.lead{margin-top:16px}.pf{margin-top:16px}.pf-chips{margin-top:12px;gap:8px}.pf-refine{margin-top:16px}}
+@media(prefers-reduced-motion:reduce){.pf-chip{transition:none}}
