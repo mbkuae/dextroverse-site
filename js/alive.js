@@ -10,7 +10,7 @@
   const P = { x: 0, y: 0, in: false, hot: false }; // fine pointer, viewport px
   const O = { x: 0, y: 0, on: false };             // device tilt, -.5..5
   const seen = new WeakSet(), acts = [], swaps = {}, ex = [];
-  let paused = false, reduced = mq.matches, raf = 0, last = 0, dirty = true;
+  let needScroll = false, paused = false, reduced = mq.matches, raf = 0, last = 0, dirty = true;
   try { paused = sessionStorage.getItem('alive-paused') === '1'; } catch (e) { /* storage blocked */ }
   const run = () => !reduced && !paused;
 
@@ -48,9 +48,14 @@
     backdrop(el) {
       const L = Q('[data-depth]', el), m = L.length ? L : [el.firstElementChild];
       const li = make('alive-light', el);
-      let x = 0, y = 0, lx = 0, ly = 0, la = 0;
+      let x = 0, y = 0, lx = 0, ly = 0, la = 0, still = false;
       return {
         tick(dt, r) {
+          if (coarse.matches) { // touch: nothing follows the finger or the scroll; the glow sits still
+            if (!still) { still = true; li.style.transform = `translate3d(${(r.width / 2).toFixed(1)}px,${(r.height / 2).toFixed(1)}px,0)`; li.style.opacity = '.14'; }
+            return false;
+          }
+          still = false;
           const d = coarse.matches ? drive(r) : P.in ? [P.x / W.innerWidth - .5, P.y / W.innerHeight - .5] : null;
           const inside = P.in && !coarse.matches && P.x > r.left && P.x < r.right && P.y > r.top && P.y < r.bottom;
           const gx = coarse.matches ? r.width * (.5 + (d ? d[0] : 0)) : P.x - r.left, gy = coarse.matches ? r.height * (.5 + (d ? d[1] : 0)) : P.y - r.top;
@@ -64,7 +69,7 @@
           li.style.opacity = la.toFixed(3);
           return !(near(x, tx, .002) && near(y, ty, .002) && near(la, ta, .01) && near(lx, gx, .5) && near(ly, gy, .5));
         },
-        reset() { m.forEach(e => (e.style.translate = '')); li.style.cssText = ''; x = y = lx = ly = la = 0; }
+        reset() { m.forEach(e => (e.style.translate = '')); li.style.cssText = ''; x = y = lx = ly = la = 0; still = false; }
       };
     },
     magnetic(el) {
@@ -121,6 +126,7 @@
       };
     },
     depth(el) {
+      needScroll = true;
       const L = Q('[data-depth]', el), cur = L.map(() => 0);
       return {
         tick(dt, r) {
@@ -138,6 +144,7 @@
       };
     },
     card(el) { // shop card: still layer shows through. Pointer devices: CSS hover. Touch: scroll position.
+      needScroll = true;
       const s = el.querySelector('[data-alive-still]');
       let o = 0;
       return !s ? null : {
@@ -258,7 +265,7 @@
   D.addEventListener('pointermove', pm, { passive: true });
   H.addEventListener('mouseleave', () => { P.in = false; wake(); });
   W.addEventListener('blur', () => { P.in = false; wake(); });
-  W.addEventListener('scroll', () => { dirty = true; wake(); }, { passive: true });
+  W.addEventListener('scroll', () => { if (coarse.matches && !needScroll) return; dirty = true; wake(); }, { passive: true }); // touch: only features that follow scroll need it
   W.addEventListener('resize', () => { dirty = true; wake(); }, { passive: true });
   mq.addEventListener('change', apply);
 

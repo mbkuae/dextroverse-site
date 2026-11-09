@@ -97,17 +97,9 @@
 .dx-gf svg,.dx-gf>g{transform-box:fill-box;transform-origin:center}
 .dx .cond{animation:dxcond 1.6s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}
 /* ambient breathing: 4 cycles, then rest */
-@keyframes dxhalo{from{opacity:.55;transform:scale(.94)}to{opacity:1;transform:scale(1.06)}}
-@keyframes dxbreathe{from{opacity:.55}to{opacity:1}}
-.dx-gh .halo{transform-box:fill-box;transform-origin:center;animation:dxhalo 6.5s ease-in-out 4 alternate}
-.dx-gf .fine{animation:dxbreathe 7s ease-in-out 4 alternate}
-.dx-knob{animation:dxkn 2.2s ease-in-out 6}
-@keyframes dxkn{50%{opacity:.35}}
-.dx.dx-used .dx-knob{animation:none}
-.dx.dx-static .in,.dx.dx-static .dr,.dx.dx-static .cond,.dx.dx-static .halo,.dx.dx-static .fine,.dx.dx-static .dx-knob{animation:none!important}
+.dx.dx-static .in,.dx.dx-static .dr,.dx.dx-static .cond{animation:none!important}
 .dx.dx-static .dr{stroke-dashoffset:0}
-.dx.dx-paused .halo,.dx.dx-paused .fine,.dx.dx-paused .dx-knob{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){.dx .in,.dx .dr,.dx .cond,.dx .halo,.dx .fine,.dx .dx-knob{animation:none!important}.dx .dr{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.dx .in,.dx .dr,.dx .cond{animation:none!important}.dx .dr{stroke-dashoffset:0}}
 </style>
 <figure>
  <div class="dx-stage" id="dx-stage">
@@ -133,7 +125,7 @@ const mq=matchMedia('(max-width:700px)'),rm=matchMedia('(prefers-reduced-motion:
 const isStatic=()=>rm.matches||!!(navigator.connection&&navigator.connection.saveData);
 const slow=()=>{const c=navigator.connection;return !!(c&&(c.saveData||/(^|-)2g|3g/.test(c.effectiveType||'')||(c.downlink&&c.downlink<.8)))};
 const lite=()=>isStatic()||slow()||mq.matches;
-let S=null,paused=false,visible=false,running=false,raf=0,t=0,last=0,idle=0;
+let lu=0,S=null,paused=false,visible=false,running=false,raf=0,t=0,last=0,idle=0;
 const r1=v=>Math.round(v*10)/10;
 function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 /* lattice: warped triangular mesh (gyroid-family look), generated at run time */
@@ -190,11 +182,11 @@ function build(phone){
  const hd=$('defs',{},gh);
  $('radialGradient',{id:'dxhg'},hd,`<stop offset="0" stop-color="${C.lumen}" stop-opacity=".4"/><stop offset=".5" stop-color="${C.lumen}" stop-opacity=".13"/><stop offset="1" stop-color="${C.lumen}" stop-opacity="0"/>`);
  $('radialGradient',{id:'dxpool'},hd,`<stop offset="0" stop-color="#2a2866" stop-opacity=".75"/><stop offset=".55" stop-color="#2a2866" stop-opacity=".4"/><stop offset="1" stop-color="#2a2866" stop-opacity="0"/>`);
- $('circle',{cx:L.cx,cy:L.cy,r:L.cr*2.7,fill:'url(#dxhg)',class:'halo'},gh);
+ D.halo=$('circle',{cx:L.cx,cy:L.cy,r:L.cr*2.7,fill:'url(#dxhg)',style:`transform-origin:${L.cx}px ${L.cy}px`},gh);
  const F2=L.fine;$('ellipse',{cx:F2.cx,cy:F2.cy+14,rx:F2.rx*.95,ry:F2.ry*.9,fill:'url(#dxpool)'},gh);
  const fe=mesh(F2.cx-F2.rx-30,F2.cy-F2.ry-30,F2.cx+F2.rx+30,F2.cy+F2.ry+30,F2.sp,5,21,(a,b)=>{const f=p=>((p[0]-F2.cx)/F2.rx)**2+((p[1]-F2.cy)/F2.ry)**2<1;return f(a)&&f(b)});
  const fg=$('g',{class:'cond',style:'--d:1.2s'},gf);
- $('path',{d:seg(fe),fill:'none',stroke:C.lumen,'stroke-opacity':.34,'stroke-width':.7,class:'fine'},fg);
+ D.fineP=$('path',{d:seg(fe),fill:'none',stroke:C.lumen,'stroke-opacity':.34,'stroke-width':.7},fg);
  /* part frames (layer gp) */
  const im=L.img;
  const fr=$('g',{class:'in',style:'--d:1.8s'},gp);
@@ -212,8 +204,8 @@ function build(phone){
  if(!phone)$('circle',{class:'dr',pathLength:1,style:'--d:.4s',cx:L.cx,cy:L.cy,r:L.R,fill:'none',stroke:'#5a5ea6','stroke-opacity':.6,'stroke-width':1},ringG);
  const linesG=$('g',{fill:'none','stroke-linecap':'round','stroke-linejoin':'round'},gx),pulses=$('g',{},gx),sats=$('g',{},gx);
  D.paths=[];
- if(!phone){D.ln=ROLES.map((_,i)=>$('line',{class:'dr',pathLength:1,style:`--d:${.8+i*.1}s`,stroke:C.lumen,'stroke-opacity':.55,'stroke-width':1.6},linesG));
-  D.sat=[0,1,2].map(()=>$('circle',{r:3.6,fill:C.lumen},sats));}
+ if(!phone){D.ln=ROLES.map((_,i)=>$('line',{class:'dr',pathLength:1,style:`--d:${.8+i*.1}s;transform-origin:${L.cx}px ${L.cy}px`,x1:L.cx+L.R,y1:L.cy,x2:L.cx,y2:L.cy,stroke:C.lumen,'stroke-opacity':.55,'stroke-width':1.6},linesG));
+  D.sat=[0,1,2].map(()=>$('circle',{r:3.6,cx:L.cx+L.R,cy:L.cy,fill:C.lumen,style:`transform-origin:${L.cx}px ${L.cy}px`},sats));}
  else{
   D.chips=L.chips.map((c,i)=>{const ex=c.edge,ys=250,e=L.cr,ax=L.cx+e*Math.cos(c.ang*Math.PI/180),ay=L.cy+e*Math.sin(c.ang*Math.PI/180);
    const d=`M${ex} ${c.y}H${c.lane}V${ys}C${c.lane} ${ys+34},${ax} ${ay-46},${ax} ${ay}`;D.paths.push(d);
@@ -231,8 +223,8 @@ function build(phone){
   const p=$('path',{d});const n=Math.ceil(p.getTotalLength()/3),a=[];for(let k=0;k<=n;k++){const o=p.getPointAtLength(p.getTotalLength()*k/n);a.push([o.x,o.y])}p.remove();D.sa.push(a)});
  /* core */
  const core=$('g',{class:'in',style:'--d:.5s'},gx);
- D.rt1=$('g',{},core);$('circle',{cx:L.cx,cy:L.cy,r:L.cr*1.22,fill:'none',stroke:C.lumen,'stroke-width':1.4,'stroke-dasharray':'2 9','stroke-linecap':'round'},D.rt1);
- D.rt2=$('g',{},core);$('circle',{cx:L.cx,cy:L.cy,r:L.cr*.88,fill:'none',stroke:C.violet,'stroke-width':1.4,'stroke-dasharray':'26 14'},D.rt2);
+ D.rt1=$('g',{style:`transform-origin:${L.cx}px ${L.cy}px`},core);$('circle',{cx:L.cx,cy:L.cy,r:L.cr*1.22,fill:'none',stroke:C.lumen,'stroke-width':1.4,'stroke-dasharray':'2 9','stroke-linecap':'round'},D.rt1);
+ D.rt2=$('g',{style:`transform-origin:${L.cx}px ${L.cy}px`},core);$('circle',{cx:L.cx,cy:L.cy,r:L.cr*.88,fill:'none',stroke:C.violet,'stroke-width':1.4,'stroke-dasharray':'26 14'},D.rt2);
  $('circle',{cx:L.cx,cy:L.cy,r:L.cr,fill:'url(#dxcg)',stroke:C.lumen,'stroke-width':2.2},core);
  const big=phone?30:40,sm=phone?15.2:20.5;
  $('text',{x:L.cx,y:L.cy-sm*.1,'text-anchor':'middle','font-size':big,style:`fill:${C.lumen}`},core,'AI');
@@ -261,7 +253,7 @@ function build(phone){
   const T=L.track;
   if(T){const tr=$('g',{class:'in',style:'--d:2.4s'},gx);
    $('path',{d:`M${T.x0} ${T.y}H${T.x1}`,stroke:C.lumen,'stroke-opacity':.3,'stroke-width':2,'stroke-linecap':'round'},tr);
-   D.knob=$('circle',{class:'dx-knob',cx:T.x0,cy:T.y,r:6.5,fill:C.lumen,stroke:C.lumen,'stroke-opacity':.25,'stroke-width':8},tr);F.k0=T.x0;F.k1=T.x1}
+   D.knob=$('circle',{cx:T.x0,cy:T.y,r:6.5,fill:C.lumen,stroke:C.lumen,'stroke-opacity':.25,'stroke-width':8},tr);F.k0=T.x0;F.k1=T.x1}
   else{F.k0=F.k1=0;D.knob=null}
   const hy=im.y-8,hh=(T?T.y+18:im.y+im.h)-hy;
   D.hit=$('rect',{id:'dx-hit',tabindex:0,role:'slider','aria-label':'Exploded view of the dog house','aria-valuemin':0,'aria-valuemax':100,'aria-valuenow':0,'aria-valuetext':'assembled',x:im.x,y:hy,width:im.w,height:hh,rx:8,fill:'transparent'},gx);
@@ -311,29 +303,42 @@ function bindFrames(){
  if(visible)loadFrames();startAuto();
 }
 /* ---------- ambient motion ---------- */
+/* One loop drives everything that moves, and writes only CSS transform/opacity (no SVG geometry attributes).
+   Line ends and satellites are fixed at build time and turned about the centre. The ambient breathing
+   (halo, fine lattice, scrub-knob hint) lives here too instead of in CSS animations, so it stops when the loop stops. */
+const sm=u=>u*u*(3-2*u);
+const alt=(tt,per,n)=>{const c=tt/per;if(c>=n)return -1;const k=Math.floor(c),u=c-k;return sm(k%2?1-u:u)};
+const mv=(g,x,y)=>{g.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)'};
+const rot=(g,deg)=>{g.style.transform='rotate('+deg.toFixed(2)+'deg)'};
+const pul=(g,x,y,f)=>{mv(g,x,y);g.style.opacity=Math.min(1,f*8,(1-f)*8)};
+function ambient(D,tt){
+ const h=alt(tt,6.5,4);
+ D.halo.style.transform=h<0?'':'scale('+(.94+.12*h).toFixed(3)+')';D.halo.style.opacity=h<0?'':(.55+.45*h).toFixed(3);
+ const f=alt(tt,7,4);D.fineP.style.opacity=f<0?'':(.55+.45*f).toFixed(3);
+ if(D.knob){const u=tt/2.2;D.knob.style.opacity=root.classList.contains('dx-used')||u>=6?'':(1-.65*sm(1-Math.abs(1-2*(u%1)))).toFixed(3)}
+}
 function update(tt){
- const D=S,L=D.L;
+ const D=S;
  if(!D.phone){
   const sw=D.sway*Math.sin(2*Math.PI*tt/D.period);
-  D.nd.forEach((g,i)=>{const a=(D.base[i]+sw)*Math.PI/180,x=D.cx+D.R*Math.cos(a),y=D.cy+D.R*Math.sin(a);
-   g.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)})`);
-   const l=D.ln[i];l.setAttribute('x1',x.toFixed(1));l.setAttribute('y1',y.toFixed(1));l.setAttribute('x2',D.cx);l.setAttribute('y2',D.cy);
+  D.nd.forEach((g,i)=>{const d=D.base[i]+sw,a=d*Math.PI/180,ca=Math.cos(a),sa=Math.sin(a),x=D.cx+D.R*ca,y=D.cy+D.R*sa;
+   mv(g,x,y);rot(D.ln[i],d);
    const f=((tt/4.6+i*.173)%1);
-   D.pr[i].setAttribute('transform',`translate(${(x+(D.cx-x)*f).toFixed(1)} ${(y+(D.cy-y)*f).toFixed(1)})`);D.pr[i].style.opacity=Math.min(1,f*8,(1-f)*8)});
-  D.sat.forEach((c,k)=>{const a=(tt*5+k*120)*Math.PI/180;c.setAttribute('cx',(D.cx+D.R*Math.cos(a)).toFixed(1));c.setAttribute('cy',(D.cy+D.R*Math.sin(a)).toFixed(1))});
+   pul(D.pr[i],D.cx+D.R*ca*(1-f),D.cy+D.R*sa*(1-f),f)});
+  D.sat.forEach((c,k)=>rot(c,tt*5+k*120));
  }else{
   D.pr.forEach((g,i)=>{const f=((tt/5.2+i*.19)%1),a=D.pa[i],p=a[Math.min(a.length-1,Math.floor(f*(a.length-1)))];
-   g.setAttribute('transform',`translate(${p[0].toFixed(1)} ${p[1].toFixed(1)})`);g.style.opacity=Math.min(1,f*8,(1-f)*8)});
+   pul(g,p[0],p[1],f)});
  }
  D.bp.forEach((g,k)=>{const f=(tt/3.2+k/3)%1,a=D.sa[k],p=a[Math.min(a.length-1,Math.floor(f*(a.length-1)))];
-  g.setAttribute('transform',`translate(${p[0].toFixed(1)} ${p[1].toFixed(1)})`);g.style.opacity=Math.min(1,f*8,(1-f)*8)});
- D.rt1.setAttribute('transform',`rotate(${(tt*6).toFixed(2)} ${D.cx} ${D.cy})`);
- D.rt2.setAttribute('transform',`rotate(${(-tt*9).toFixed(2)} ${D.cx} ${D.cy})`);
+  pul(g,p[0],p[1],f)});
+ rot(D.rt1,tt*6);rot(D.rt2,-tt*9);
+ if(!isStatic())ambient(D,tt);
 }
 function loop(ts){
  if(!running)return;
  if(last)t+=Math.min(.1,(ts-last)/1000);last=ts;
- update(t);
+ if(!S.phone||ts-lu>=30){lu=ts;update(t)}   /* phone: 30 updates a second is plenty for slow pulses */
  if(t>75){setPaused(true,true);return}   /* ambient motion settles after about 75 s of running */
  raf=requestAnimationFrame(loop);
 }
@@ -356,7 +361,9 @@ function init(){
  bindFrames();sync();
 }
 btn.addEventListener('click',()=>setPaused(!paused));
-new IntersectionObserver(e=>{visible=e[0].isIntersecting;document.body.classList.toggle('dx-view',visible);if(visible){loadFrames();startAuto()}sync()},{threshold:.05,rootMargin:'200px 0px'}).observe(root);
+/* animate (rAF) only while the diagram is actually on screen; its frames are fetched a little earlier */
+new IntersectionObserver(e=>{visible=e[e.length-1].isIntersecting;document.body.classList.toggle('dx-view',visible);if(visible){loadFrames();startAuto()}sync()},{threshold:0,rootMargin:'0px'}).observe(root);
+new IntersectionObserver((e,o)=>{if(e[e.length-1].isIntersecting){loadFrames();o.disconnect()}},{rootMargin:'200px 0px'}).observe(root);
 document.addEventListener('visibilitychange',sync);
 new MutationObserver(()=>{const a=document.documentElement.classList.contains('alive-paused');if(a!==paused)setPaused(a)}).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
 mq.addEventListener('change',()=>{running=false;cancelAnimationFrame(raf);init()});
