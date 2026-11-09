@@ -43,7 +43,7 @@
   <nav id="nav" aria-label="Main" data-open="false">
     <a href="https://app.dextroverse.io/shop">Browse parts</a>
     <a href="/clickers/" data-nav="clickers">Custom clickers</a>
-    <a href="https://app.dextroverse.io/start">Describe what you need</a>
+    <a href="https://app.dextroverse.io/try">Describe what you need</a>
     <a href="/#how">Where to start</a>
   </nav>
 </header>
@@ -55,7 +55,7 @@
   <div class="wrap hero-in">
     <div class="hero-copy" data-alive-calm>
       <h1>Describe a part. See a first result.</h1>
-      <p class="lead">Write what you want in plain words. We choose the sizes, you refine them next.</p>
+      <p class="lead">Write what you want in plain words.</p>
       <form class="pf" method="get" action="https://app.dextroverse.io/try" id="pf">
         <label for="pf-p">Your part</label>
         <textarea id="pf-p" name="prompt" maxlength="500" required rows="2" placeholder="A phone stand for my desk"></textarea>
@@ -401,14 +401,14 @@ if(!f)return;
 f.addEventListener('submit',function(ev){if(!t.value.trim()){ev.preventDefault();e.textContent='Describe your part first';t.focus()}});
 t.addEventListener('input',function(){e.textContent=''});
 t.addEventListener('invalid',function(ev){ev.preventDefault();e.textContent='Describe your part first';t.focus()});
-document.querySelectorAll('.pf-chip').forEach(function(c){c.addEventListener('click',function(ev){if(ev.ctrlKey||ev.metaKey||ev.shiftKey||ev.altKey||ev.button)return;ev.preventDefault();t.value=c.getAttribute('data-t');e.textContent='';t.focus()})})})();
+})();
 </script>
 <script src="/js/nav.js"></script><script src="/js/lat.js"></script><script src="/js/alive.js" defer></script>
 <footer class="foot">
   <div class="foot-band" aria-hidden="true"><div class="lat"><img src="/media/lat/gyroid-s2.webp" alt="" width="1280" height="720" loading="lazy"></div></div>
   <div class="foot-grid">
     <div><a class="brand" href="/"><img src="/brand/mark.png" alt="" width="32" height="27"><img src="/brand/wordmark-white.png" alt="Dextroverse" width="115" height="13"></a></div>
-    <nav aria-label="Footer"><h2>Order</h2><a href="https://app.dextroverse.io/shop">Browse parts</a><a href="https://app.dextroverse.io/start">Describe what you need</a><a href="/#how">Where to start</a><a href="/clickers/">Custom clickers</a></nav>
+    <nav aria-label="Footer"><h2>Order</h2><a href="https://app.dextroverse.io/shop">Browse parts</a><a href="https://app.dextroverse.io/try">Describe what you need</a><a href="/#how">Where to start</a><a href="/clickers/">Custom clickers</a></nav>
     <nav aria-label="Contact"><h2>Talk to us</h2><a href="mailto:hello@dextroverse.io">hello@dextroverse.io</a><a href="https://wa.me/971504556912?text=Hello%2C%20I%20would%20like%20to%20ask%20about%20a%20part.">WhatsApp</a><a href="https://instagram.com/dextroverse3d">Instagram</a></nav>
   </div>
   <p class="legal">&copy; Dextroverse &middot; <a href="/privacy/">Privacy</a></p>
