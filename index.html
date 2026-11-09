@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dextroverse | From description to every printed part, in one connected flow.</title>
-<meta name="description" content="Describe what you need, see the price, and have it printed in the UAE. Design, checks, printing and delivery in one connected flow.">
+<title>Dextroverse | Describe a part. See a first result.</title>
+<meta name="description" content="Describe a part in plain words and see a first result. Refine it, see the price, and have it printed in the UAE.">
 <link rel="canonical" href="https://dextroverse.io/">
 <link rel="icon" type="image/png" href="/favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dextroverse">
 <meta property="og:url" content="https://dextroverse.io/">
-<meta property="og:title" content="Dextroverse | From description to every printed part, in one connected flow.">
-<meta property="og:description" content="Describe what you need, see the price, and have it printed in the UAE. Design, checks, printing and delivery in one connected flow.">
+<meta property="og:title" content="Dextroverse | Describe a part. See a first result.">
+<meta property="og:description" content="Describe a part in plain words and see a first result. Refine it, see the price, and have it printed in the UAE.">
 <meta property="og:image" content="https://dextroverse.io/logo.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dextroverse | From description to every printed part, in one connected flow.">
-<meta name="twitter:description" content="Describe what you need, see the price, and have it printed in the UAE. Design, checks, printing and delivery in one connected flow.">
+<meta name="twitter:title" content="Dextroverse | Describe a part. See a first result.">
+<meta name="twitter:description" content="Describe a part in plain words and see a first result. Refine it, see the price, and have it printed in the UAE.">
 <meta name="twitter:image" content="https://dextroverse.io/logo.png">
 <link rel="preload" href="/fonts/jura-light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/jura-medium.woff2" as="font" type="font/woff2" crossorigin>
@@ -27,7 +27,7 @@
   "name": "Dextroverse",
   "url": "https://dextroverse.io/",
   "logo": "https://dextroverse.io/logo.png",
-  "description": "Describe what you need, see the price, and have it printed in the UAE. Design, checks, printing and delivery in one connected flow.",
+  "description": "Describe a part in plain words and see a first result. Refine it, see the price, and have it printed in the UAE.",
   "email": "hello@dextroverse.io",
   "telephone": "+971504556912",
   "areaServed": "AE",
@@ -54,9 +54,20 @@
   <div class="alive-clearzone" aria-hidden="true"></div>
   <div class="wrap hero-in">
     <div class="hero-copy" data-alive-calm>
-      <h1>From description to every printed part, in one connected flow.</h1>
-      <p class="lead">Send a model, or describe a part or a whole product. We read it back and send you the price.</p>
-      <div class="askrow"><a class="btn" href="https://app.dextroverse.io/start" data-alive="magnetic">Describe what you need</a><a class="tl" data-alive="link" href="https://app.dextroverse.io/shop">Browse parts</a></div>
+      <h1>Describe a part. See a first result.</h1>
+      <p class="lead">Write what you want in plain words. We choose the sizes, you refine them next.</p>
+      <form class="pf" method="get" action="https://app.dextroverse.io/start" id="pf">
+        <label for="pf-p">Your part</label>
+        <textarea id="pf-p" name="prompt" maxlength="500" required rows="2" placeholder="A phone stand for my desk"></textarea>
+        <p class="pf-err" id="pf-err" role="status"></p>
+        <button class="btn" type="submit" data-alive="magnetic">Show me</button>
+      </form>
+      <ul class="pf-chips" aria-label="Examples">
+        <li><a class="pf-chip" href="https://app.dextroverse.io/start?prompt=A%20wall%20hook%20for%20a%20bike%20helmet" data-t="A wall hook for a bike helmet">A hook for a bike helmet</a></li>
+        <li><a class="pf-chip" href="https://app.dextroverse.io/start?prompt=A%20desk%20stand%20for%20a%20phone%2C%20angled%20for%20video%20calls" data-t="A desk stand for a phone, angled for video calls">A phone stand for video calls</a></li>
+        <li><a class="pf-chip" href="https://app.dextroverse.io/start?prompt=A%20round%20lid%20for%20a%2070%20mm%20jar%20with%20a%20small%20handle" data-t="A round lid for a 70 mm jar with a small handle">A lid for a 70 mm jar</a></li>
+      </ul>
+      <p class="pf-refine">Then change it, for example: make it 10 mm thicker.</p>
     </div>
   </div>
 </section>
@@ -377,12 +388,21 @@ window.__diagram={get F(){return F},get running(){return running},get t(){return
 </section>
 
 <section class="wrap focus" id="how" aria-label="Where to start">
-  <div class="fb"><h2>Shop</h2><p>Pick a size, see the price, and we print it to order.</p><a class="tl" data-alive="link" href="https://app.dextroverse.io/shop">Browse parts</a></div>
+  <div class="fb"><h2>Shop</h2><p>Pick a size, see the price, and we print it for you.</p><a class="tl" data-alive="link" href="https://app.dextroverse.io/shop">Browse parts</a></div>
   <div class="fb"><h2>Custom clickers</h2><p>Tell us the name and the colours. We send the price for each piece.</p><a class="tl" data-alive="link" href="/clickers/">Make yours</a></div>
   <div class="fb"><h2>Engineered products</h2><p>Describe the product. We design the printed parts and quote the whole build.</p><a class="tl" data-alive="link" href="https://wa.me/971504556912?text=Hello%2C%20I%20have%20a%20project%20that%20needs%20engineering.">Message us on WhatsApp</a></div>
 </section>
 
 </main>
+<script>
+// maxlength=500 counts a newline as 1 char but the form sends CRLF; the app must normalise and enforce the limit server-side.
+(function(){var f=document.getElementById('pf'),t=document.getElementById('pf-p'),e=document.getElementById('pf-err');
+if(!f)return;
+f.addEventListener('submit',function(ev){if(!t.value.trim()){ev.preventDefault();e.textContent='Describe your part first';t.focus()}});
+t.addEventListener('input',function(){e.textContent=''});
+t.addEventListener('invalid',function(ev){ev.preventDefault();e.textContent='Describe your part first';t.focus()});
+document.querySelectorAll('.pf-chip').forEach(function(c){c.addEventListener('click',function(ev){if(ev.ctrlKey||ev.metaKey||ev.shiftKey||ev.altKey||ev.button)return;ev.preventDefault();t.value=c.getAttribute('data-t');e.textContent='';t.focus()})})})();
+</script>
 <script src="/js/nav.js"></script><script src="/js/lat.js"></script><script src="/js/alive.js" defer></script>
 <footer class="foot">
   <div class="foot-band" aria-hidden="true"><div class="lat"><img src="/media/lat/gyroid-s2.webp" alt="" width="1280" height="720" loading="lazy"></div></div>
