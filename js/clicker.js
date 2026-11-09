@@ -13,7 +13,7 @@ function draw(root){
   if(clean.length>10){clean=clean.slice(0,10);m='Up to 10 letters.'}
   if(clean!==f.value)f.value=clean;
   var s=clean.toUpperCase()||'NAME',empty=!clean,kc=val('key'+root.dataset.c),lc=val('let'+root.dataset.c),sw='';
-  if(cr(kc,lc)<3){var a=cr(kc,PAL.midnight),b=cr(kc,PAL.bone);lc=a>=b?PAL.midnight:PAL.bone;sw=' Letters switched to '+(a>=b?'Midnight':'Bone white')+' so they stay readable.'}var same=lc===PAL.midnight&&false;
+  if(cr(kc,lc)<4.5){var a=cr(kc,PAL.midnight),b=cr(kc,PAL.bone);lc=a>=b?PAL.midnight:PAL.bone;sw=' Letters switched to '+(a>=b?'Midnight':'Bone white')+' so they stay readable.'}
   var n=s.length,W=60+n*74,h='';
   h+='<g fill="none" stroke="'+PAL.slate+'" stroke-width="3"><circle cx="30" cy="40" r="20"/><path d="M50 40H'+(W-8)+'" stroke-width="2" stroke-dasharray="1 0"/></g>';
   for(var i=0;i<n;i++){var x=62+i*74;
@@ -22,6 +22,7 @@ function draw(root){
   svg.setAttribute('viewBox','0 0 '+W+' 124');svg.innerHTML=h;
   svg.setAttribute('aria-label','Illustration of a keyring with the letters '+s.split('').join(' ')+', letters in a second colour');
   msg.textContent=m+sw;live.textContent=empty?'Type a name to see your keys. The example shows NAME.':'Showing '+n+' keys: '+s.split('').join(', ')+'.';
+  var wa=document.querySelector('[data-wa-clicker]');if(wa&&root.dataset.c==='p'){var nm=function(h){return {'#53e6e0':'Lumen','#8b6cff':'Violet','#eef0ff':'Bone white','#9a9cc0':'Slate','#14132a':'Midnight'}[h]};var t='Hello, I would like a custom clicker.'+(empty?'':' Name: '+clean.toUpperCase()+'. Key: '+nm(kc)+'. Letters: '+nm(lc)+'.');wa.href='https://wa.me/971504556912?text='+encodeURIComponent(t)}
   var two=root.querySelector('[data-c-two]');if(two)two.hidden=(kc===lc);
  }
  f.addEventListener('compositionstart',function(){composing=true});f.addEventListener('compositionend',function(){composing=false;render()});f.addEventListener('input',render);root.addEventListener('change',render);render();

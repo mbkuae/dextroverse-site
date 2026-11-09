@@ -41,22 +41,22 @@
   <button class="motion-btn" id="motion" data-alive-pause type="button" aria-pressed="false" hidden><span class="w">Pause</span><span class="ml"> motion</span></button>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
   <nav id="nav" aria-label="Main" data-open="false">
-    <a href="https://app.dextroverse.io">Browse parts</a>
+    <a href="https://app.dextroverse.io/shop">Browse parts</a>
     <a href="/clickers/" data-nav="clickers">Custom clickers</a>
-    <a href="https://app.dextroverse.io">Describe a part</a>
+    <a href="https://app.dextroverse.io/start">Describe a part</a>
     <a href="/#how">How it works</a>
   </nav>
 </header>
 <button class="motion-chip" id="chip" type="button" hidden aria-label="Pause motion">Pause</button>
 <main id="main">
 <section class="hero" id="describe" data-alive="backdrop halo">
-  <div class="lat" aria-hidden="true"><img class="alive-bleed" src="/media/lat/gyroid-1280.webp" srcset="/media/lat/gyroid-640.webp 640w, /media/lat/gyroid-1280.webp 1280w" sizes="100vw" alt="" width="1280" height="720" fetchpriority="high"><video class="alive-bleed" muted playsinline preload="none" data-lat="gyroid"><source src="/media/lat/gyroid-720.webm" type="video/webm" media="(min-width:900px)"><source src="/media/lat/gyroid-720.mp4" type="video/mp4" media="(min-width:900px)"><source src="/media/lat/gyroid-360.mp4" type="video/mp4" media="(max-width:699px)"></video></div>
+  <div class="lat" aria-hidden="true"><img class="alive-bleed" src="/media/lat/gyroid-1280.webp" srcset="/media/lat/gyroid-640.webp 640w, /media/lat/gyroid-1280.webp 1280w" sizes="100vw" alt="" width="1280" height="720" fetchpriority="high"><video class="alive-bleed" muted playsinline preload="none" data-lat="gyroid"><source src="/media/lat/gyroid-720.webm" type="video/webm" media="(min-width:900px)"><source src="/media/lat/gyroid-720.mp4" type="video/mp4" media="(min-width:900px)"><source src="/media/lat/gyroid-360.mp4" type="video/mp4" media="(max-width:899px)"></video></div>
   <div class="alive-clearzone" aria-hidden="true"></div>
   <div class="wrap hero-in">
     <div class="hero-copy" data-alive-calm>
       <h1>Describe the part. See the price.</h1>
       <p class="lead">Say what the part does and how big it is. We model it and show you the price before you order.</p>
-      <div class="ask2"><div class="lbrow"><p class="cap" id="exl">Describe the part</p><span class="xl">Example</span></div><q class="exq" aria-labelledby="exl">A round flange, 80 mm across, with a 20 mm bore and four bolt holes.</q><div class="askrow"><a class="btn" href="https://app.dextroverse.io" data-alive="magnetic">See the price</a><a class="tl" data-alive="link" href="https://app.dextroverse.io">Browse parts</a></div></div>
+      <div class="ask2"><div class="lbrow"><p class="cap" id="exl">Describe the part</p><span class="xl">Example</span></div><q class="exq" aria-labelledby="exl">A round flange, 80 mm across, with a 20 mm bore and four bolt holes.</q><div class="askrow"><a class="btn" href="https://app.dextroverse.io/start" data-alive="magnetic">See the price</a><a class="tl" data-alive="link" href="https://app.dextroverse.io/shop">Browse parts</a></div></div>
           </div>
     <figure class="hero-part" data-alive-part><img src="/media/flange-600.webp" srcset="/media/flange-600.webp 600w, /media/flange-1000.webp 1000w" sizes="(max-width:860px) 80vw, 460px" alt="Round bolt-on flange, illustration" width="1000" height="750" fetchpriority="high"><figcaption class="cap">Illustration of an 80 mm flange.</figcaption></figure>
   </div>
@@ -69,7 +69,7 @@
     <table class="spec"><caption class="cap"><span class="xl">Example</span></caption><tr><th>Part</th><td>Round flange</td></tr><tr><th>Across</th><td>80 mm</td></tr><tr><th>Bore</th><td>20 mm</td></tr><tr><th>Holes</th><td>4</td></tr>
     <tr><th>Thickness</th><td>6 mm</td></tr>
     <tr><th>Price</th><td class="price-line">Your price in AED shows here after you confirm.</td></tr></table>
-    <a class="tl" data-alive="link" href="https://app.dextroverse.io">Describe your part</a>
+    <a class="tl" data-alive="link" href="https://app.dextroverse.io/start">Describe your part</a>
   </div>
 </section>
 
@@ -88,14 +88,14 @@
   <div><h2>Custom clickers</h2><p class="note">Your name on a keyring, one key for each letter. Type it and see it.</p><p class="links"><a class="tl" data-alive="link" href="/clickers/">Make yours</a></p></div>
   <div class="ckw" data-clicker data-c="h">
   <figure class="ckstage" data-alive-part><svg class="ck" role="img" viewBox="0 0 356 124" aria-label="Illustration of a keyring"></svg><figcaption class="cap">Illustration. Our own design, drawn for this page.</figcaption></figure>
-  <div class="ckc"><label for="nmh">Name or word</label><input id="nmh" data-c-name type="text" maxlength="14" autocomplete="off" inputmode="text" placeholder="Up to 10 letters" aria-describedby="hinth"><p class="cap" id="hinth"><span data-c-msg role="alert"></span> Letters only, up to 10.</p>
+  <div class="ckc"><label for="nmh">Name or word</label><input id="nmh" data-c-name type="text" autocomplete="off" inputmode="text" placeholder="Up to 10 letters" aria-describedby="hinth"><p class="cap" id="hinth"><span data-c-msg role="alert"></span> Letters only, up to 10.</p>
   
   <p class="sr" role="status" data-c-live></p></div></div>
 </section>
 
 <section class="wrap wm" aria-label="From words to a part">
   <div class="wmt"><h2>Your words become a model you can check.</h2><p class="note">We read it back before any price is shown.</p></div>
-  <div><div class="lat-box" data-alive-part><div class="lat" aria-hidden="true"><img src="/media/lat/membrane-1280.webp" srcset="/media/lat/membrane-640.webp 640w, /media/lat/membrane-1280.webp 1280w" sizes="(max-width:900px) 100vw, 58vw" alt="" width="1280" height="720" loading="lazy"><video muted playsinline preload="none" data-lat="membrane"><source src="/media/lat/membrane-720.webm" type="video/webm" media="(min-width:900px)"><source src="/media/lat/membrane-720.mp4" type="video/mp4" media="(min-width:900px)"><source src="/media/lat/membrane-360.mp4" type="video/mp4" media="(max-width:699px)"></video></div></div></div><p class="vtag">Abstract render. Illustration.</p></div>
+  <div><div class="lat-box" data-alive-part><div class="lat" aria-hidden="true"><img src="/media/lat/membrane-1280.webp" srcset="/media/lat/membrane-640.webp 640w, /media/lat/membrane-1280.webp 1280w" sizes="(max-width:900px) 100vw, 58vw" alt="" width="1280" height="720" loading="lazy"><video muted playsinline preload="none" data-lat="membrane"><source src="/media/lat/membrane-720.webm" type="video/webm" media="(min-width:900px)"><source src="/media/lat/membrane-720.mp4" type="video/mp4" media="(min-width:900px)"><source src="/media/lat/membrane-360.mp4" type="video/mp4" media="(max-width:899px)"></video></div></div></div><p class="vtag">Abstract render. Illustration.</p></div>
 </section>
 
 <section class="wrap claims" data-alive-calm aria-label="What we do">
@@ -111,8 +111,8 @@
 </section>
 
 <section class="wrap find" aria-label="Browse parts">
-  <form action="https://app.dextroverse.io" method="get" role="search"><label class="skip" for="sq">Search parts</label><input id="sq" name="q" type="search" placeholder="Search parts"><button class="btn ghost" type="submit">Search</button></form>
-  <a class="tl" data-alive="link" href="https://app.dextroverse.io">Browse parts</a>
+  
+  <a class="tl" data-alive="link" href="https://app.dextroverse.io/shop">Browse parts</a>
 </section>
 </main>
 <script src="/js/nav.js"></script><script src="/js/clicker.js"></script><script src="/js/lat.js"></script><script src="/js/alive.js" defer></script>
@@ -120,10 +120,10 @@
   <div class="foot-band" aria-hidden="true"><div class="lat"><img src="/media/lat/gyroid-s2.webp" alt="" width="1280" height="720" loading="lazy"></div></div>
   <div class="foot-grid">
     <div><a class="brand" href="/"><img src="/brand/mark.png" alt="" width="32" height="27"><img src="/brand/wordmark-white.png" alt="Dextroverse" width="115" height="13"></a></div>
-    <nav aria-label="Footer"><h2>Order</h2><a href="https://app.dextroverse.io">Browse parts</a><a href="https://app.dextroverse.io">Describe a part</a><a href="/#how">How it works</a><a href="/clickers/">Custom clickers</a></nav>
-    <nav aria-label="Contact"><h2>Talk to us</h2><a href="mailto:hello@dextroverse.io">hello@dextroverse.io</a><a href="https://wa.me/971504556912">WhatsApp</a><a href="https://instagram.com/dextroverse3d">Instagram</a></nav>
+    <nav aria-label="Footer"><h2>Order</h2><a href="https://app.dextroverse.io/shop">Browse parts</a><a href="https://app.dextroverse.io/start">Describe a part</a><a href="/#how">How it works</a><a href="/clickers/">Custom clickers</a></nav>
+    <nav aria-label="Contact"><h2>Talk to us</h2><a href="mailto:hello@dextroverse.io">hello@dextroverse.io</a><a href="https://wa.me/971504556912?text=Hello%2C%20I%20would%20like%20to%20ask%20about%20a%20part.">WhatsApp</a><a href="https://instagram.com/dextroverse3d">Instagram</a></nav>
   </div>
-  <p class="legal">&copy; Dextroverse &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/brochure.pdf">Brochure</a></p>
+  <p class="legal">&copy; Dextroverse &middot; <a href="/privacy/">Privacy</a></p>
 </footer>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "39279fbf3c28419c92095501a5f7bce7"}'></script><!-- End Cloudflare Web Analytics -->
 </body></html>

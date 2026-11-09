@@ -3,7 +3,7 @@
 var rm=matchMedia('(prefers-reduced-motion:reduce)'),root=document.documentElement,btn=document.getElementById('motion');
 var vids=[].slice.call(document.querySelectorAll('.lat video'));
 var sd=!!(navigator.connection&&(navigator.connection.saveData||/(^|-)2g$/.test(navigator.connection.effectiveType||'')));
-function off(){return rm.matches||sd||location.search.indexOf('still')>-1}
+function off(){return rm.matches||sd}
 if(!off()&&!vids.length){if(btn)btn.hidden=false;return}
 if(off()||!vids.length){if(document.getElementById('chip'))document.getElementById('chip').hidden=true;root.classList.add('nomotion');if(btn)btn.hidden=true;return}
 var chip=document.getElementById('chip'),paused=false,ratio=new Map(),loops=new Map();
