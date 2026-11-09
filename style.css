@@ -383,3 +383,5 @@ h1{font-weight:500;line-height:1.1}
 .hero-in{display:grid}.hero-copy{display:block}
 @media(max-width:260px){.hero h1{font-size:26px;overflow-wrap:anywhere}.top .motion-btn{display:none}}
 @media(max-width:260px){.top .brand img:last-child{display:none}}
+/* anchored sections land below the 72px sticky header on phones */
+@media(max-width:860px){[id]{scroll-margin-top:84px}}

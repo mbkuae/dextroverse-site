@@ -12,7 +12,10 @@ vids.forEach(function(v){ratio.set(v,0);loops.set(v,0);
  v.addEventListener('ended',function(){var n=loops.get(v)+1;loops.set(v,n);if(n<3&&!paused&&best()===v){v.currentTime=0;v.play().catch(function(){})}else if(n>=3)v.parentNode.classList.remove('on')});
  v.addEventListener('error',function(){v.parentNode.classList.remove('on')},true)});
 function best(){var b=null,r=.3;vids.forEach(function(v){if(ratio.get(v)>r){r=ratio.get(v);b=v}});return b}
-function pick(){if(!started)return;var b=best();vids.forEach(function(v){if(v!==b&&!v.paused)v.pause()});
+var coarse=matchMedia('(pointer:coarse),(hover:none)').matches,scrolling=false,st=0;
+/* touch: the hero video holds still while the page scrolls and resumes when it settles */
+if(coarse)addEventListener('scroll',function(){if(!scrolling){scrolling=true;vids.forEach(function(v){v.pause()})}clearTimeout(st);st=setTimeout(function(){scrolling=false;pick()},250)},{passive:true});
+function pick(){if(!started||scrolling)return;var b=best();vids.forEach(function(v){if(v!==b&&!v.paused)v.pause()});
  if(b&&!paused&&b.paused&&loops.get(b)<3){b.preload='auto';var p=b.play();if(p)p.catch(function(){})}}
 var started=false;addEventListener('load',function(){setTimeout(function(){started=true;pick()},800)});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){ratio.set(e.target,e.isIntersecting?e.intersectionRatio:0)});pick()},{threshold:[0,.1,.2,.3,.4,.5,.6,.8,1]});
