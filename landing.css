@@ -132,3 +132,4 @@ html.nomotion .lm .atm video{display:none}
 @media(min-width:861px){.lm .jump{top:0}}
 .lm .photo[aria-disabled=true]{cursor:default}.lm .photo[aria-disabled=true]:hover{border-color:var(--dim)}
 @media(max-width:899px){.lm .mode{scroll-margin-top:140px}}
+.lm .exfigs{display:grid;gap:14px;grid-template-columns:1fr}@media(min-width:640px){.lm .exfigs{grid-template-columns:1fr 1fr}}
